@@ -1,17 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="row p-2 justify-content-center">
+      <div class="col-lg-10 col-md-10 col-sm-10">
+        <app-heading>
+          <h4>Quotes Added</h4>
+        </app-heading>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" :style="{width:quoteCount*10+'%'}" :aria-valuenow="quoteCount" aria-valuemin="0" aria-valuemax="10">{{quoteCount}}/10</div>
+        </div>
+      </div>
+    </div>
+    <app-add-quote></app-add-quote>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Heading from './components/Heading.vue'
+import AddQuote from './components/AddQuote.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    appHeading : Heading,
+    appAddQuote : AddQuote
+  },
+  data(){
+    return{
+      quoteCount : 7,
+      quotes : []
+    }
   }
 }
 </script>
