@@ -1,18 +1,25 @@
 <template>
-
-        <form>
-            <div class="form-group">
-                <label for="quote">Quote:</label>
-                <textarea class="form-control" rows="3" id="quote"></textarea>
-            </div>
-            <button class="btn btn-primary" type="submit">Add quote</button>
-        </form>
-
+    <div class='quoteDiv'>
+        <label for="quote">Quote:</label>
+        <textarea v-model="quote" class="form-control" rows="3" id="quote"></textarea>
+        <button class="btn btn-primary" @click='addQuote'>Add quote</button>
+    </div>    
 </template>
 
 <script>
 export default {
-    name:'AddQuote'
+    name:'AddQuote',
+    data(){
+        return{
+            quote : ''
+        }
+    },
+    methods:{
+        addQuote(){
+            this.$emit('newQuote', this.quote)
+            this.quote=''
+        }
+    }
 }
 </script>
 
@@ -20,7 +27,7 @@ export default {
     textarea{
         margin: auto;
     }
-    form{
+    .quoteDiv{
         width: 50%;
         margin: auto;
     }

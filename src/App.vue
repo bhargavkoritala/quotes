@@ -1,34 +1,57 @@
 <template>
-  <div id="app">
-    <div class="row p-2 justify-content-center">
-      <div class="col-lg-10 col-md-10 col-sm-10">
+  <div class="container" id="app">
+    <div class="row justify-content-center">
+      <div class="col-lg-12 col-md-12 col-sm-12">
         <app-heading>
           <h4>Quotes Added</h4>
         </app-heading>
         <div class="progress">
-          <div class="progress-bar" role="progressbar" :style="{width:quoteCount*10+'%'}" :aria-valuenow="quoteCount" aria-valuemin="0" aria-valuemax="10">{{quoteCount}}/10</div>
+          <div class="progress-bar" role="progressbar" :style="{width:quotes.length*10+'%'}" :aria-valuenow="quotes.length" aria-valuemin="0" aria-valuemax="10">{{quotes.length}}/10</div>
         </div>
       </div>
     </div>
-    <app-add-quote></app-add-quote>
-    
+    <app-add-quote @newQuote='includeNew'></app-add-quote>
+    <app-quotes @delQuote='deleteQuote' :quotes="quotes"></app-quotes>
+    <app-info>
+      <div class="row justify-content-center">
+        <div class="border align-middle border-primary col-lg-12 col-md-12 col-sm-12">
+          <p>Info : Click on Quote to delete it</p>
+        </div>
+      </div>
+    </app-info>
   </div>
 </template>
 
 <script>
 import Heading from './components/Heading.vue'
 import AddQuote from './components/AddQuote.vue'
-
+import Quotes from './components/Quotes.vue'
+import Info from './components/Info.vue'
 export default {
   name: 'App',
   components: {
     appHeading : Heading,
-    appAddQuote : AddQuote
+    appAddQuote : AddQuote,
+    appQuotes : Quotes,
+    appInfo : Info
   },
   data(){
     return{
-      quoteCount : 7,
-      quotes : []
+      quotes : ['You only live once, but if you do it right, once is enough']
+    }
+  },
+  methods:{
+    includeNew(quoteAdded){
+      if(this.quotes.length==10){
+        alert('Delete a quote to add a new one !')
+      }
+      else{
+         this.quotes.push(quoteAdded) 
+      }
+      
+    },
+    deleteQuote(delQuote){
+      this.quotes = this.quotes.filter((quote)=>quote!=delQuote)
     }
   }
 }
