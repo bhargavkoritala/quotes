@@ -11,11 +11,11 @@
       </div>
     </div>
     <app-add-quote @newQuote='includeNew'></app-add-quote>
-    <app-quotes @delQuote='deleteQuote' :quotes="quotes"></app-quotes>
+    <app-quotes @del-quote='deleteQuote' :quotes="quotes"></app-quotes>
     <app-info>
       <div class="row justify-content-center">
-        <div class="border align-middle border-primary col-lg-12 col-md-12 col-sm-12">
-          <p>Info : Click on Quote to delete it</p>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <p class="alert alert-primary">Info : Click on quote to delete it</p>
         </div>
       </div>
     </app-info>

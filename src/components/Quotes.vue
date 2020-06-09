@@ -1,7 +1,7 @@
 <template>
     <div class="row justify-content-between">
         <div class="p-2 col-lg-3 col-md-3 col-sm-3 delete" :key="index" v-for="(quote,index) in quotes">
-            <app-quote @delQuote="$emit('delQuote',$event)" :quote="quote"></app-quote>
+            <app-quote @click.native="deleteQuote(quote)" :quote="quote"></app-quote>
         </div>
     </div>
 </template>
@@ -23,17 +23,14 @@ export default {
         }
     },
     methods:{
-        deleteQuote(){
-            this.$emit('del-quote', this.quote)
+        deleteQuote(quote){
+            this.$emit('del-quote', quote)
         }
     }
 }
 </script>
 
 <style scoped>
-    p{
-        cursor: pointer;
-    }
     .red{
         background-color: lightsalmon;
     }

@@ -1,6 +1,6 @@
 <template>
-    <div :class="{red:isHovering}" class="border border-primary">
-        <p @click="delQuote" @mouseover="isHovering=!isHovering" @mouseout="isHovering=!isHovering">{{quote}}</p>
+    <div class="border border-primary">
+        <p>{{quote}}</p>
     </div>
 </template>
 
@@ -24,10 +24,10 @@ export default {
 </script>
 
 <style scoped>
-    .red{
+    div:hover{
         background-color: lightsalmon;
     }
-    p{
+    div{
         cursor: pointer;
     }
     .border{
